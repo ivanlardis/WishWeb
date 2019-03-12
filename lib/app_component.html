@@ -1,3 +1,37 @@
-<h1>My First AngularDart App</h1>
+<H1 class="wishheader" align="center">Доска голосов</H1>
+<table width="700" align="center">
+    <tr>
+        <td width="200">
+            <H3 class="wishheader" align="center">Кол-во нажатий</H3>
+            <ul class="wish">
+                <li *ngFor="let wish of wishsFullCount">
+                    <span class="badge">{{wish.position}}</span> {{wish.name}} - {{wish.value}}
+                </li>
+            </ul>
+        </td>
+        <td width="300">
+            <table width="300" cellpadding="5" cellspacing="0">
+                <tr>
+                    <td class="wishheader" width="100">Против</td>
+                    <td class="wishheader" align="center" width="200">Все голоса</td>
+                    <td class="wishheader" align="right" width="100">За</td>
+                </tr>
 
-<todo-list></todo-list>
+                <tr>
+                    <td class="wishheader" width="100">{{countAllCons}}</td>
+                    <td width="200"></td>
+                    <td class="wishheader" align="right" width="100">{{countAllProps}}</td>
+                </tr>
+            </table>
+        </td>
+        <td width="200">
+            <H3 class="wishheader" align="center">Быстрота нажатий</H3>
+            <ul class="wish">
+                <li *ngFor="let wish of wishsFullFast">
+                    <span class="badge">{{wish.position}}</span> {{wish.name}} - {{wish.value}} мс
+                </li>
+            </ul>
+
+        </td>
+    </tr>
+</table>
