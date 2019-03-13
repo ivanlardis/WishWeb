@@ -8,11 +8,12 @@ import 'package:wishweb/src/models/WishOpenInfo.dart';
 class WishService {
   final BrowserClient _http;
 
+  static var url ="http://34.73.164.26:8888";
   WishService(this._http);
 
   Future<WishOpenInfo> getAll() async {
     try {
-      final response = await _http.get("http://localhost:8888/wishopeninfo");
+      final response = await _http.get("$url/wishopeninfo");
       Map map = json.decode(response.body);
       final heroes = WishOpenInfo.fromJson(map);
       return heroes;
