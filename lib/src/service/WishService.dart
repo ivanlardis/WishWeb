@@ -2,25 +2,27 @@ import 'dart:convert';
 import 'dart:html';
 
 import 'package:http/browser_client.dart';
+import 'package:wishweb/src/models/OverView.dart';
 import 'package:wishweb/src/models/WishFull.dart';
 import 'package:wishweb/src/models/WishOpenInfo.dart';
 
 class WishService {
   final BrowserClient _http;
 
-  static var url ="http://34.73.164.26:8888";
+  static var url ="http://localhost:8888";
   WishService(this._http);
 
-  Future<WishOpenInfo> getAll() async {
+  Future<List<OverView>> getAll() async {
     try {
-      final response = await _http.get("$url/wishopeninfo");
-      Map map = json.decode(response.body);
-      final heroes = WishOpenInfo.fromJson(map);
+      final response = await _http.get("$url/overview");
+      
+      print("object ${response}");
+
+      final heroes = (json.decode(response.body) as List).map((model) =>OverView.fromJson(model)).toList();
       return heroes;
     } catch (e) {}
-
-    return WishOpenInfo(
-        countAllProps: 0, countAllCons: 0, wishsFull: <WishFull>[]);
+    print("object catch");
+    return List();
   }
 }
 

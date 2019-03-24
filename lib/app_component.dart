@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:angular/angular.dart';
+import 'package:intl/intl.dart';
+import 'package:wishweb/src/models/OverView.dart';
 import 'package:wishweb/src/models/WishFull.dart';
 import 'package:wishweb/src/models/WishItemList.dart';
 import 'package:wishweb/src/models/WishOpenInfo.dart';
@@ -28,78 +30,68 @@ class AppComponent {
   final WishService _wishService;
 
   AppComponent(this._wishService) {
-    wishsFullCount.add(new WishItemList(startTime: 12,
-      name: "Иван",
-      pulse: 62,
-      pulseMax: 312,
-      pulseMin: 12,
-      burnCal: 12,
-      duration: 312
 
+    var timerObservable = Observable.periodic(Duration(seconds: 1));
 
-    ));
-    wishsFullCount.add(new WishItemList(startTime: 12,
-      name: "Анна",
-      pulse: 62,
-      pulseMax: 312,
-      pulseMin: 12,
-      burnCal: 12,
-      duration: 312
-
-
-    ));
-    wishsFullCount.add(new WishItemList(startTime: 12,
-      name: "Петр",
-      pulse: 62,
-      pulseMax: 312,
-      pulseMin: 12,
-      burnCal: 12,
-      duration: 312
-
-
-    ));
-
-//    var timerObservable = Observable.periodic(Duration(seconds: 1));
-//
-//    timerObservable.listen((i) {
-//      loadData();
-//    });
+    timerObservable.listen((i) {
+      loadData();
+    });
 
 
   }
 
+
+  void loadData() async {
+    List<OverView> info = await _wishService.getAll();
+    wishsFullCount.clear();
+    for (var value in info) {
+
+      DateTime date = new DateTime.fromMillisecondsSinceEpoch(value.start);
+      var pulseAverage =  (value.max.toDouble()+ value.min.toDouble())/2;
+      var weight = 80;
+
+      var format = new DateFormat("Hms");
+      var dateString = format.format(date);
+      var duration =((DateTime.now().millisecondsSinceEpoch - value.start)/1000).toInt() ;
+
+      var min= duration/60;
+      var sec= duration%60;
+      var burnCal =   0.014 * weight * min * (0.12 * pulseAverage - 7);
+      var burnCalFormat = format11(burnCal);
+
+      if (value.curent != 0){
+        wishsFullCount.add(new WishItemList(startTime: dateString,
+            name: value.userName,
+            pulse: "${value.curent}",
+            pulseMax: "${value.max}",
+            pulseMin: "${value.min}",
+            burnCal: burnCalFormat,
+            duration: "${min.toInt()}:${sec.toInt()}"
+
+
+        ));
+      } else {
+
+        wishsFullCount.add(new WishItemList(startTime: dateString,
+            name: value.userName,
+            pulse: "-",
+            pulseMax: "-",
+            pulseMin: "-",
+            burnCal: "-",
+            duration: "${min.toInt()}:${sec.toInt()}"
+
+
+        ));
+      }
+
+    }
+
+
+
+  }
+
+
+  String format11(double n) {
+    return n.toStringAsFixed(n.truncateToDouble() == n ? 0 : 2);
+  }
 }
-//
-//  void loadData() async {
-//    WishOpenInfo info = await _wishService.getAll();
-//
-//    var wishsFull = info.wishsFull;
-//    wishsFull.sort(
-//        (a, b) => (a.timeAfterLastPress) > (b.timeAfterLastPress) ? 1 : -1);
-//
-//    var wishsFullFastBuf = List<WishItemList>();
-//    for (int i = 0; i < wishsFull.length; i++) {
-//      wishsFullFastBuf.add(WishItemList(
-//          position: i + 1,
-//          name: wishsFull[i].userName,
-//          value: wishsFull[i].timeAfterLastPress));
-//    }
-//    wishsFullFast = wishsFullFastBuf;
-//
-//
-//    wishsFull.sort(
-//            (a, b) => (a.getAllCountPressed()) < (b.getAllCountPressed()) ? 1 : -1);
-//
-//    var wishsFullCountBuf = List<WishItemList>();
-//    for (int i = 0; i < wishsFull.length; i++) {
-//      wishsFullCountBuf.add(WishItemList(
-//          position: i + 1,
-//          name: wishsFull[i].userName,
-//          value: wishsFull[i].getAllCountPressed()));
-//    }
-//    wishsFullCount = wishsFullCountBuf;
-//
-//    countAllCons = info.countAllCons;
-//    countAllProps = info.countAllProps;
-//  }
-//}

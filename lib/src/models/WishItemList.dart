@@ -12,10 +12,10 @@ class WishItemList {
 
 
   String name ="";
-  int pulse = 0;
-  int duration = 0;
-  int pulseMax = 0;
-  int pulseMin = 0;
-  int burnCal = 0;
-  int startTime = 0;
+  String pulse = "";
+  String duration = "";
+  String pulseMax = "";
+  String pulseMin = "";
+  String burnCal = "";
+  String startTime = "";
 }
