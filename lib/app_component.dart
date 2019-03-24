@@ -28,43 +28,78 @@ class AppComponent {
   final WishService _wishService;
 
   AppComponent(this._wishService) {
-    var timerObservable = Observable.periodic(Duration(seconds: 1));
+    wishsFullCount.add(new WishItemList(startTime: 12,
+      name: "Иван",
+      pulse: 62,
+      pulseMax: 312,
+      pulseMin: 12,
+      burnCal: 12,
+      duration: 312
 
-    timerObservable.listen((i) {
-      loadData();
-    });
+
+    ));
+    wishsFullCount.add(new WishItemList(startTime: 12,
+      name: "Анна",
+      pulse: 62,
+      pulseMax: 312,
+      pulseMin: 12,
+      burnCal: 12,
+      duration: 312
+
+
+    ));
+    wishsFullCount.add(new WishItemList(startTime: 12,
+      name: "Петр",
+      pulse: 62,
+      pulseMax: 312,
+      pulseMin: 12,
+      burnCal: 12,
+      duration: 312
+
+
+    ));
+
+//    var timerObservable = Observable.periodic(Duration(seconds: 1));
+//
+//    timerObservable.listen((i) {
+//      loadData();
+//    });
+
+
   }
 
-  void loadData() async {
-    WishOpenInfo info = await _wishService.getAll();
-
-    var wishsFull = info.wishsFull;
-    wishsFull.sort(
-        (a, b) => (a.timeAfterLastPress) > (b.timeAfterLastPress) ? 1 : -1);
-
-    var wishsFullFastBuf = List<WishItemList>();
-    for (int i = 0; i < wishsFull.length; i++) {
-      wishsFullFastBuf.add(WishItemList(
-          position: i + 1,
-          name: wishsFull[i].userName,
-          value: wishsFull[i].timeAfterLastPress));
-    }
-    wishsFullFast = wishsFullFastBuf;
-
-
-    wishsFull.sort(
-            (a, b) => (a.getAllCountPressed()) < (b.getAllCountPressed()) ? 1 : -1);
-
-    var wishsFullCountBuf = List<WishItemList>();
-    for (int i = 0; i < wishsFull.length; i++) {
-      wishsFullCountBuf.add(WishItemList(
-          position: i + 1,
-          name: wishsFull[i].userName,
-          value: wishsFull[i].getAllCountPressed()));
-    }
-    wishsFullCount = wishsFullCountBuf;
-
-    countAllCons = info.countAllCons;
-    countAllProps = info.countAllProps;
-  }
 }
+//
+//  void loadData() async {
+//    WishOpenInfo info = await _wishService.getAll();
+//
+//    var wishsFull = info.wishsFull;
+//    wishsFull.sort(
+//        (a, b) => (a.timeAfterLastPress) > (b.timeAfterLastPress) ? 1 : -1);
+//
+//    var wishsFullFastBuf = List<WishItemList>();
+//    for (int i = 0; i < wishsFull.length; i++) {
+//      wishsFullFastBuf.add(WishItemList(
+//          position: i + 1,
+//          name: wishsFull[i].userName,
+//          value: wishsFull[i].timeAfterLastPress));
+//    }
+//    wishsFullFast = wishsFullFastBuf;
+//
+//
+//    wishsFull.sort(
+//            (a, b) => (a.getAllCountPressed()) < (b.getAllCountPressed()) ? 1 : -1);
+//
+//    var wishsFullCountBuf = List<WishItemList>();
+//    for (int i = 0; i < wishsFull.length; i++) {
+//      wishsFullCountBuf.add(WishItemList(
+//          position: i + 1,
+//          name: wishsFull[i].userName,
+//          value: wishsFull[i].getAllCountPressed()));
+//    }
+//    wishsFullCount = wishsFullCountBuf;
+//
+//    countAllCons = info.countAllCons;
+//    countAllProps = info.countAllProps;
+//  }
+//}

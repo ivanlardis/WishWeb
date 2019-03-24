@@ -1,37 +1,57 @@
-<H1 class="wishheader" align="center">Доска голосов</H1>
-<table width="700" align="center">
-    <tr>
-        <td width="200">
-            <H3 class="wishheader" align="center">Кол-во нажатий</H3>
-            <ul class="wish">
-                <li *ngFor="let wish of wishsFullCount">
-                    <span class="badge">{{wish.position}}</span> {{wish.name}} - {{wish.value}}
-                </li>
-            </ul>
-        </td>
-        <td width="300">
-            <table width="300" cellpadding="5" cellspacing="0">
-                <tr>
-                    <td class="wishheader" width="100">Против</td>
-                    <td class="wishheader" align="center" width="200">Все голоса</td>
-                    <td class="wishheader" align="right" width="100">За</td>
-                </tr>
+<html>
+<head>
 
-                <tr>
-                    <td class="wishheader" width="100">{{countAllCons}}</td>
-                    <td width="200"></td>
-                    <td class="wishheader" align="right" width="100">{{countAllProps}}</td>
-                </tr>
-            </table>
-        </td>
-        <td width="200">
-            <H3 class="wishheader" align="center">Быстрота нажатий</H3>
-            <ul class="wish">
-                <li *ngFor="let wish of wishsFullFast">
-                    <span class="badge">{{wish.position}}</span> {{wish.name}} - {{wish.value}} мс
-                </li>
-            </ul>
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
 
-        </td>
-    </tr>
-</table>
+
+<div class="wrapper">
+
+
+    <div *ngFor="let wish of wishsFullCount" class="w3-panel w3-card">
+        <div class="row">
+
+            <img class="column" src="https://media.giphy.com/media/gndEKUZ5aRA3u/giphy.gif"/>
+
+
+            <div class="column ">
+
+                <p class="otHeader" align="right">{{wish.name}}</p>
+                <p class="otHeader2" align="center">Тренировка</p>
+                <div class="container">
+                    <div class="logo key">Начало</div>
+                    <div class="right value">{{wish.startTime}}</div>
+                </div>
+                <div class="container">
+                    <div class="logo key">Продол(мин)</div>
+                    <div class="right value">{{wish.duration}}</div>
+                </div>
+                <p class="otHeader2" align="center">Пульс(уд/с)</p>
+
+                <div class="container">
+                    <div class="logo key">Текущий</div>
+                    <div class="right value">{{wish.pulse}}</div>
+                </div>
+                <div class="container">
+                    <div class="logo key">Мин/Макс</div>
+                    <div class="right value">{{wish.pulseMin}}/{{wish.pulseMax}}</div>
+                </div>
+
+
+                <p class="otHeader2" align="center">Калории</p>
+                <div class="container">
+                    <div class="logo key">Соженныe</div>
+                    <div class="right value">{{wish.burnCal}}</div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

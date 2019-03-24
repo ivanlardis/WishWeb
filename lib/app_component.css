@@ -1,62 +1,107 @@
-:host {
-    /* This is equivalent of the 'body' selector of a page. */
+
+@import url("http://fonts.googleapis.com/css?family=Roboto");
+@import url("https://www.w3schools.com/w3css/4/w3.css");
+
+
+
+
+ * {
+     box-sizing: border-box;
+     padding: 0;
+     margin: 0;
+ }
+
+.wrapper {
+    display: grid;
+    border-style: solid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-gap: 5px;
+
+    width: 100vw;
+    height: 100vh;
 }
 
-.selected {
-    background-color: #CFD8DC !important;
-    color: white;
+.itemRight {
+    align: right;
+
+    background-color: beige;
+
+    width: 50%;
+    height: 30%;
 }
 
-.wish {
+.itemLeft {
 
-    margin: 0 0 2em 0;
-    list-style-type: none;
-    padding: 0;
-    width: 15em;
+
+    background-color: aliceblue;
+
+    width: 50%;
+    height: 30%;
 }
 
-.wish li {
-    cursor: pointer;
-    position: relative;
-    left: 0;
-    background-color: #EEE;
-    margin: .5em;
-    padding: .3em 0;
-    height: 1.6em;
-    border-radius: 4px;
+.column {
+    float: left;
+    width: 50%;
+
 }
 
-.wish li.selected:hover {
-    color: white;
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
-.wish li:hover {
-    color: #2196F3;
-    background-color: #EEE;
-    left: .1em;
+
+#over img {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
-.wish .text {
 
-    position: relative;
-    top: -3px;
+.avatar {
+    margin: 10px;
+    margin-left: auto;
+    margin-right: auto;
+
+    display: block;
+    height: 27%; /* Should be removed. Only for demonstration */
 }
 
-.wishheader {
-    color: #2196F3;
+.key {
+    text-align: left;
+    color: #a58144;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1vw;
 }
 
-.wish .badge {
+.value {
+    font-size-adjust: inherit;
+    font-size: 1vw;
+    text-align: right;
+    font-family: 'Roboto', sans-serif;
+}
+
+.otHeader {
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 2vw;
+}
+
+.otHeader2 {
+
+    font-family: 'Roboto', sans-serif;
+    font-size: 1vw;
+}
+
+.logo {
     display: inline-block;
-    font-size: small;
-    color: white;
-    padding: 0.8em 0.7em 0 0.7em;
-    background-color: #2196F3;
-    line-height: 1em;
-    position: relative;
-    left: -1px;
-    top: -4px;
-    height: 1.8em;
-    margin-right: .8em;
-    border-radius: 4px 0 0 4px;
+}
+
+.right {
+    float: right;
+    width: 50%;
 }

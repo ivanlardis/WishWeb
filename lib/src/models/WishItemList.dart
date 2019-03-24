@@ -1,11 +1,21 @@
 class WishItemList {
   WishItemList(
-      {this.position,
-        this.name,
-        this.value});
+      {this.name,
+        this.pulse,
+        this.pulseMax,
+        this.pulseMin,
+        this.burnCal,
+        this.startTime ,
+        this.duration
+
+      });
 
 
-  int position = 0;
   String name ="";
-  int value = 0;
+  int pulse = 0;
+  int duration = 0;
+  int pulseMax = 0;
+  int pulseMin = 0;
+  int burnCal = 0;
+  int startTime = 0;
 }
